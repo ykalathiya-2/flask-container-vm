@@ -250,62 +250,6 @@ python benchmark.py --url http://localhost:5000
    curl http://localhost:5000/status
    ```
 
-## 📚 Learning Resources
-
-### For Beginners
-
-1. **Docker Basics**
-   - [Docker Official Tutorial](https://docs.docker.com/get-started/)
-   - [Docker for Beginners](https://docker-curriculum.com/)
-
-2. **Flask Basics**
-   - [Flask Quickstart](https://flask.palletsprojects.com/quickstart/)
-   - [Flask Tutorial](https://flask.palletsprojects.com/tutorial/)
-
-3. **Vagrant Basics**
-   - [Vagrant Getting Started](https://www.vagrantup.com/intro/getting-started)
-   - [Vagrant Documentation](https://www.vagrantup.com/docs)
-
-### Performance Testing
-
-1. **Python Performance Tips**
-   - [Python Performance Tips](https://wiki.python.org/moin/PythonSpeed/PerformanceTips)
-   - [Load Testing Basics](https://www.blazemeter.com/blog/load-testing-basics)
-
-## 🤔 Common Questions
-
-### Q: Why use containers instead of VMs?
-A: Containers are faster, use less memory, and are easier to manage. They share the host OS kernel, making them more efficient.
-
-### Q: How do I know if my app is working?
-A: Check the `/health` endpoint. It should return a JSON response with status information.
-
-### Q: What if the Docker build fails?
-A: Make sure Docker is installed and running. Check the error messages for missing dependencies.
-
-### Q: What if Vagrant fails to start?
-A: Make sure VirtualBox is installed and running. Check that virtualization is enabled in your BIOS.
-
-### Q: How do I stop the application?
-A: Press `Ctrl+C` in the terminal, or use `docker stop` if running in a container.
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Getting Help
-
-If you have questions:
-
-1. Check the [Issues](https://github.com/yourusername/flask-container-vm/issues) page
-2. Create a new issue with your question
-3. Make sure to include:
-   - What you're trying to do
-   - What error messages you see
-   - Your operating system
-
----
-
-**Happy Learning!** 🚀
-
-This project is designed to help beginners understand containerization and performance testing. Start with the basic setup and gradually explore the differences between containers and VMs!
