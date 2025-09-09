@@ -13,7 +13,7 @@ This project helps you understand:
 - How to containerize a Flask application
 - Performance differences between containers and VMs
 - Basic CI/CD pipeline setup
-- Simple monitoring and metrics collection
+- How to run applications in different environments
 
 ## 🚀 Quick Start
 
@@ -22,8 +22,10 @@ This project helps you understand:
 - Docker (Download from [docker.com](https://www.docker.com/))
 - Python 3.9+ (Download from [python.org](https://www.python.org/))
 - Git
+- VirtualBox (for VM testing)
+- Vagrant (for VM testing)
 
-### Installation
+### Option 1: Run with Docker (Recommended)
 
 1. **Download the project**
    ```bash
@@ -31,7 +33,7 @@ This project helps you understand:
    cd flask-container-vm
    ```
 
-2. **Run with Docker (Recommended)**
+2. **Build and run with Docker**
    ```bash
    # Build the container
    docker build -t flask-app .
@@ -49,16 +51,68 @@ This project helps you understand:
    curl http://localhost:5000/health
    ```
 
-4. **Run performance tests**
+### Option 2: Run with Virtual Machine
+
+1. **Install VirtualBox and Vagrant**
+   - Download VirtualBox from [virtualbox.org](https://www.virtualbox.org/)
+   - Download Vagrant from [vagrantup.com](https://www.vagrantup.com/)
+
+2. **Start the VM**
    ```bash
-   # Install Python dependencies
-   pip install -r requirements.txt
+   # Start the virtual machine
+   vagrant up
    
-   # Run the benchmark
-   python benchmark.py --url http://localhost:5000
+   # Connect to the VM
+   vagrant ssh
    ```
 
-## 📈 Performance Results
+3. **Inside the VM, run the application**
+   ```bash
+   # Navigate to the project directory
+   cd /vagrant
+   
+   # Install Python dependencies
+   pip3 install -r requirements.txt
+   
+   # Run the Flask application
+   python3 app.py
+   ```
+
+4. **Test the VM application**
+   ```bash
+   # From your host machine, test the VM
+   curl http://localhost:5001/health
+   ```
+
+5. **Stop the VM when done**
+   ```bash
+   vagrant halt
+   ```
+
+## 📈 Performance Testing
+
+### Run Performance Tests
+
+```bash
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Test Docker container (if running)
+python benchmark.py --url http://localhost:5000
+
+# Test VM (if running)
+python benchmark.py --url http://localhost:5001
+```
+
+### Compare Results
+
+The benchmark will show you:
+- **Startup Time**: How fast the app starts
+- **Memory Usage**: How much memory it uses
+- **CPU Performance**: How fast it processes data
+- **Response Time**: How quickly it responds to requests
+
+## 📊 Performance Results
 
 ### Container vs VM Comparison
 
@@ -76,67 +130,87 @@ flask-container-vm/
 ├── app.py                  # Main Flask application
 ├── benchmark.py            # Performance testing script
 ├── Dockerfile              # Container configuration
+├── Vagrantfile             # VM configuration
 ├── requirements.txt        # Python dependencies
 ├── test_app.py             # Simple tests
+├── setup.sh                # Easy setup script
 └── README.md               # This file
 ```
 
-## 🔧 Features
+## 🔧 Available Endpoints
 
-### Flask Application
-- **Health Check**: `/health` - Shows if the app is running
-- **CPU Test**: `/cpu` - Tests CPU performance
-- **Memory Test**: `/memory` - Tests memory usage
-- **Metrics**: `/metrics` - Shows performance data
+- **`/`** - Main page with welcome message
+- **`/health`** - Health check (shows if app is running)
+- **`/cpu`** - CPU performance test
+- **`/memory`** - Memory usage test
+- **`/parallel`** - Parallel processing test
+- **`/status`** - Simple status information
 
-### Performance Testing
-- **Startup Time**: How fast the app starts
-- **Memory Usage**: How much memory it uses
-- **CPU Performance**: How fast it processes data
-- **Response Time**: How quickly it responds to requests
+## 🐳 Docker Commands
 
-## 📊 Monitoring Integration
+### Basic Docker Commands
 
-This application is designed to work with popular monitoring tools:
+```bash
+# Build the image
+docker build -t flask-app .
 
-### Prometheus Metrics
-The app exposes metrics at `/metrics` endpoint that Prometheus can scrape:
+# Run the container
+docker run -p 5000:5000 flask-app
 
-```yaml
-# prometheus.yml
-scrape_configs:
-  - job_name: 'flask-app'
-    static_configs:
-      - targets: ['localhost:5000']
+# Run in background
+docker run -d -p 5000:5000 --name my-flask-app flask-app
+
+# Stop the container
+docker stop my-flask-app
+
+# Remove the container
+docker rm my-flask-app
+
+# View logs
+docker logs my-flask-app
 ```
 
-### Grafana Dashboard
-Import the provided dashboard to visualize:
-- Request rates
-- Response times
-- Memory usage
-- CPU utilization
+## 🖥️ VM Commands
 
-### ELK Stack Logs
-The application logs are structured for easy parsing:
+### Vagrant Commands
 
-```json
-{
-  "timestamp": "2024-12-19T10:30:00Z",
-  "level": "INFO",
-  "message": "Request processed",
-  "endpoint": "/health",
-  "response_time": 0.003
-}
+```bash
+# Start the VM
+vagrant up
+
+# Connect to the VM
+vagrant ssh
+
+# Stop the VM
+vagrant halt
+
+# Restart the VM
+vagrant reload
+
+# Destroy the VM (removes it completely)
+vagrant destroy
+
+# Check VM status
+vagrant status
 ```
 
-### Jaeger Tracing
-Distributed tracing is supported for request tracking:
+### Inside the VM
 
-```python
-# Example tracing setup
-from opentelemetry import trace
-tracer = trace.get_tracer(__name__)
+```bash
+# Navigate to project
+cd /vagrant
+
+# Install dependencies
+pip3 install -r requirements.txt
+
+# Run the application
+python3 app.py
+
+# Run tests
+python3 test_app.py
+
+# Run benchmarks
+python3 benchmark.py --url http://localhost:5000
 ```
 
 ## 🧪 Testing
@@ -171,54 +245,10 @@ python benchmark.py --url http://localhost:5000
    curl http://localhost:5000/memory
    ```
 
-4. **Metrics**
+4. **Status**
    ```bash
-   curl http://localhost:5000/metrics
+   curl http://localhost:5000/status
    ```
-
-## 🐳 Docker Commands
-
-### Basic Docker Commands
-
-```bash
-# Build the image
-docker build -t flask-app .
-
-# Run the container
-docker run -p 5000:5000 flask-app
-
-# Run in background
-docker run -d -p 5000:5000 --name my-flask-app flask-app
-
-# Stop the container
-docker stop my-flask-app
-
-# Remove the container
-docker rm my-flask-app
-
-# View logs
-docker logs my-flask-app
-```
-
-### Docker Compose (Optional)
-
-Create a `docker-compose.yml` file:
-
-```yaml
-version: '3.8'
-services:
-  flask-app:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - FLASK_ENV=production
-```
-
-Then run:
-```bash
-docker-compose up
-```
 
 ## 📚 Learning Resources
 
@@ -232,19 +262,15 @@ docker-compose up
    - [Flask Quickstart](https://flask.palletsprojects.com/quickstart/)
    - [Flask Tutorial](https://flask.palletsprojects.com/tutorial/)
 
-3. **Performance Testing**
+3. **Vagrant Basics**
+   - [Vagrant Getting Started](https://www.vagrantup.com/intro/getting-started)
+   - [Vagrant Documentation](https://www.vagrantup.com/docs)
+
+### Performance Testing
+
+1. **Python Performance Tips**
    - [Python Performance Tips](https://wiki.python.org/moin/PythonSpeed/PerformanceTips)
    - [Load Testing Basics](https://www.blazemeter.com/blog/load-testing-basics)
-
-### Monitoring Tools
-
-1. **Prometheus**
-   - [Prometheus Getting Started](https://prometheus.io/docs/introduction/getting_started/)
-   - [Prometheus Configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)
-
-2. **Grafana**
-   - [Grafana Tutorials](https://grafana.com/tutorials/)
-   - [Creating Dashboards](https://grafana.com/docs/grafana/latest/dashboards/)
 
 ## 🤔 Common Questions
 
@@ -256,6 +282,9 @@ A: Check the `/health` endpoint. It should return a JSON response with status in
 
 ### Q: What if the Docker build fails?
 A: Make sure Docker is installed and running. Check the error messages for missing dependencies.
+
+### Q: What if Vagrant fails to start?
+A: Make sure VirtualBox is installed and running. Check that virtualization is enabled in your BIOS.
 
 ### Q: How do I stop the application?
 A: Press `Ctrl+C` in the terminal, or use `docker stop` if running in a container.
@@ -279,4 +308,4 @@ If you have questions:
 
 **Happy Learning!** 🚀
 
-This project is designed to help beginners understand containerization and performance testing. Start with the basic setup and gradually explore the monitoring features!
+This project is designed to help beginners understand containerization and performance testing. Start with the basic setup and gradually explore the differences between containers and VMs!

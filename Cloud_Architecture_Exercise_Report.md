@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-This report shows the performance differences between running a Flask application in a Docker container versus a virtual machine. The analysis is designed for beginners to understand containerization benefits and includes simple monitoring setup.
+This report shows the performance differences between running a Flask application in a Docker container versus a virtual machine. The analysis is designed for beginners to understand containerization benefits and includes simple setup instructions.
 
 ---
 
@@ -17,10 +17,11 @@ This report shows the performance differences between running a Flask applicatio
 ### 1.1 Application Overview
 
 The Flask application is a simple web service with these features:
-- Health check endpoint
-- CPU performance testing
-- Memory usage testing
-- Basic monitoring metrics
+- Health check endpoint (`/health`)
+- CPU performance testing (`/cpu`)
+- Memory usage testing (`/memory`)
+- Parallel processing test (`/parallel`)
+- Status information (`/status`)
 
 ### 1.2 Docker Configuration
 
@@ -58,14 +59,6 @@ The GitHub Actions workflow includes:
 - **Build Step**: Creates Docker image
 - **Test Docker**: Verifies the container works
 
-### 1.4 Monitoring Integration
-
-The application includes monitoring for:
-- **Prometheus**: Metrics collection at `/metrics`
-- **Grafana**: Dashboard visualization
-- **ELK Stack**: Log aggregation and analysis
-- **Jaeger**: Request tracing (optional)
-
 ---
 
 ## Section 2: VM vs Container Performance Testing
@@ -76,13 +69,60 @@ The application includes monitoring for:
 - Ubuntu 20.04 LTS
 - 1GB RAM, 2 vCPUs
 - Python 3.9
+- Vagrant + VirtualBox
 
 **Container Configuration:**
 - Python 3.9-slim base image
 - Same application code
 - Docker runtime
 
-### 2.2 Performance Results
+### 2.2 How to Run VM Testing
+
+1. **Install Prerequisites**
+   ```bash
+   # Install VirtualBox
+   # Download from https://www.virtualbox.org/
+   
+   # Install Vagrant
+   # Download from https://www.vagrantup.com/
+   ```
+
+2. **Start the VM**
+   ```bash
+   # Start the virtual machine
+   vagrant up
+   
+   # Connect to the VM
+   vagrant ssh
+   ```
+
+3. **Inside the VM**
+   ```bash
+   # Navigate to project directory
+   cd /vagrant
+   
+   # Install dependencies
+   pip3 install -r requirements.txt
+   
+   # Run the application
+   python3 app.py
+   ```
+
+4. **Test from Host Machine**
+   ```bash
+   # Test the VM application
+   curl http://localhost:5001/health
+   
+   # Run benchmark
+   python benchmark.py --url http://localhost:5001
+   ```
+
+5. **Stop the VM**
+   ```bash
+   vagrant halt
+   ```
+
+### 2.3 Performance Results
 
 | Metric | VM | Container | Improvement |
 |--------|----|-----------|-------------|
@@ -91,7 +131,7 @@ The application includes monitoring for:
 | **Throughput** | 127 req/s | 189 req/s | **49% higher** |
 | **Response Time** | 185ms | 124ms | **33% faster** |
 
-### 2.3 Why Containers Are Better
+### 2.4 Why Containers Are Better
 
 **Faster Startup:**
 - Containers share the host OS kernel
@@ -108,7 +148,7 @@ The application includes monitoring for:
 - Direct access to host resources
 - Optimized for applications
 
-### 2.4 When to Use Each
+### 2.5 When to Use Each
 
 **Use Containers for:**
 - Web applications
@@ -124,57 +164,53 @@ The application includes monitoring for:
 
 ---
 
-## Section 3: Monitoring Setup
+## Section 3: Testing Instructions
 
-### 3.1 Prometheus Metrics
-
-The application exposes metrics at `/metrics`:
-
-```
-flask_requests_total 150
-flask_response_time_seconds 0.123
-flask_memory_usage_percent 25.4
-flask_cpu_usage_percent 12.3
-```
-
-### 3.2 Grafana Dashboard
-
-Create dashboards to visualize:
-- Request rates over time
-- Response time percentiles
-- Memory and CPU usage
-- Error rates
-
-### 3.3 ELK Stack Logs
-
-Structured logging for analysis:
-```json
-{
-  "timestamp": "2024-12-19T10:30:00Z",
-  "level": "INFO",
-  "message": "Request completed",
-  "method": "GET",
-  "path": "/health",
-  "response_time": 0.003
-}
-```
-
-### 3.4 Simple Monitoring Commands
+### 3.1 Docker Testing
 
 ```bash
-# Start monitoring stack
-cd monitoring
-docker-compose up -d
+# Build the container
+docker build -t flask-app .
 
-# View Prometheus
-open http://localhost:9090
+# Run the container
+docker run -p 5000:5000 flask-app
 
-# View Grafana
-open http://localhost:3000
-# Login: admin/admin
+# Test the application
+curl http://localhost:5000/health
 
-# View Kibana
-open http://localhost:5601
+# Run benchmark
+python benchmark.py --url http://localhost:5000
+```
+
+### 3.2 VM Testing
+
+```bash
+# Start VM
+vagrant up
+
+# Connect to VM
+vagrant ssh
+
+# Inside VM
+cd /vagrant
+pip3 install -r requirements.txt
+python3 app.py
+
+# From host machine
+curl http://localhost:5001/health
+python benchmark.py --url http://localhost:5001
+```
+
+### 3.3 Performance Comparison
+
+Run the same benchmark on both environments:
+
+```bash
+# Test Docker
+python benchmark.py --url http://localhost:5000 --output docker_results.json
+
+# Test VM
+python benchmark.py --url http://localhost:5001 --output vm_results.json
 ```
 
 ---
@@ -186,20 +222,20 @@ open http://localhost:5601
 1. **Containers are faster**: 86% faster startup time
 2. **Containers use less memory**: 50% less memory usage
 3. **Containers perform better**: 49% higher throughput
-4. **Monitoring is important**: Helps understand performance
+4. **Both are easy to set up**: Simple instructions for beginners
 
 ### Recommendations for Beginners
 
 1. **Start with containers**: Easier to manage and deploy
-2. **Use monitoring**: Understand how your app performs
+2. **Try both approaches**: Understand the differences
 3. **Test everything**: Always verify your changes work
 4. **Keep it simple**: Don't overcomplicate your setup
 
 ### Next Steps
 
 1. **Learn Docker basics**: Understand containerization
-2. **Set up monitoring**: Use Prometheus and Grafana
-3. **Practice deployment**: Deploy to cloud platforms
+2. **Practice with VMs**: Learn virtualization concepts
+3. **Compare performance**: Use the benchmark tools
 4. **Read documentation**: Learn from official sources
 
 ---
