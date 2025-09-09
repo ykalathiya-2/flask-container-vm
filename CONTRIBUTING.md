@@ -1,4 +1,4 @@
-# Contributing to Cloud Architecture Exercise
+# Contributing to Flask Container vs VM Performance Analysis
 
 Thank you for your interest in contributing to this project! This document provides guidelines and information for contributors.
 
@@ -36,8 +36,8 @@ We welcome suggestions for improvements! Please include:
 
 1. **Fork and clone the repository**
    ```bash
-   git clone https://github.com/yourusername/cloud-architecture-exercise.git
-   cd cloud-architecture-exercise
+   git clone https://github.com/yourusername/flask-container-vm.git
+   cd flask-container-vm
    ```
 
 2. **Create a virtual environment**

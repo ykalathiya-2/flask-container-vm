@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Cloud Architecture Exercise - GitHub Upload Script
+# Flask Container vs VM Performance Analysis - GitHub Upload Script
 # This script helps upload the project to GitHub
 
 set -e
 
-echo "🚀 Cloud Architecture Exercise - GitHub Upload Helper"
+echo "🚀 Flask Container vs VM Performance Analysis - GitHub Upload Helper"
 echo "=================================================="
 
 # Check if git is initialized
@@ -32,7 +32,7 @@ if [ -z "$GITHUB_USERNAME" ]; then
 fi
 
 # Repository name
-REPO_NAME="cloud-architecture-exercise"
+REPO_NAME="flask-container-vm"
 REPO_URL="https://github.com/$GITHUB_USERNAME/$REPO_NAME.git"
 
 echo ""

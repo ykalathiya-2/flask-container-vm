@@ -1,11 +1,11 @@
-# Cloud Architecture & DevOps Engineering Exercise
+# Flask Container vs VM Performance Analysis
 
-[![CI/CD Pipeline](https://github.com/yourusername/cloud-architecture-exercise/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/yourusername/cloud-architecture-exercise/actions)
+[![CI/CD Pipeline](https://github.com/yourusername/flask-container-vm/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/yourusername/flask-container-vm/actions)
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 [![Python](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A comprehensive cloud architecture and DevOps engineering project demonstrating modern containerization, CI/CD pipelines, and performance benchmarking between virtual machines and containers.
+A comprehensive Flask application performance analysis project demonstrating modern containerization, CI/CD pipelines, and performance benchmarking between virtual machines and containers.
 
 ## 📊 Project Overview
 
@@ -61,8 +61,8 @@ graph TB
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/cloud-architecture-exercise.git
-   cd cloud-architecture-exercise
+   git clone https://github.com/yourusername/flask-container-vm.git
+   cd flask-container-vm
    ```
 
 2. **Build and run with Docker**
@@ -113,7 +113,7 @@ graph LR
 ## 🛠️ Project Structure
 
 ```
-cloud-architecture-exercise/
+flask-container-vm/
 ├── 📁 .github/
 │   └── workflows/
 │       └── ci-cd.yml          # GitHub Actions CI/CD pipeline
@@ -279,7 +279,7 @@ spec:
 
 ## 📚 Documentation
 
-- [Detailed Analysis Report](Cloud_Architecture_Exercise_Report.md) - Comprehensive technical analysis
+- [Detailed Analysis Report](Cloud_Architecture_Exercise_Report.md) - Comprehensive Flask performance analysis
 - [API Documentation](docs/api.md) - Complete API reference
 - [Deployment Guide](docs/deployment.md) - Production deployment instructions
 - [Contributing Guidelines](CONTRIBUTING.md) - How to contribute to the project
@@ -300,7 +300,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Authors
 
-- **Cloud Architecture Expert** - *Initial work* - [GitHub](https://github.com/yourusername)
+- **Flask Performance Expert** - *Initial work* - [GitHub](https://github.com/yourusername)
 
 ## 🙏 Acknowledgments
 
@@ -313,7 +313,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need help, please:
 
-1. Check the [Issues](https://github.com/yourusername/cloud-architecture-exercise/issues) page
+1. Check the [Issues](https://github.com/yourusername/flask-container-vm/issues) page
 2. Create a new issue if your question isn't answered
 3. Contact the maintainers
 
@@ -321,6 +321,6 @@ If you have any questions or need help, please:
 
 ⭐ **Star this repository** if you found it helpful!
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/cloud-architecture-exercise?style=social)](https://github.com/yourusername/cloud-architecture-exercise/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/cloud-architecture-exercise?style=social)](https://github.com/yourusername/cloud-architecture-exercise/network)
-[![GitHub watchers](https://img.shields.io/github/watchers/yourusername/cloud-architecture-exercise?style=social)](https://github.com/yourusername/cloud-architecture-exercise/watchers)
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/flask-container-vm?style=social)](https://github.com/yourusername/flask-container-vm/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/flask-container-vm?style=social)](https://github.com/yourusername/flask-container-vm/network)
+[![GitHub watchers](https://img.shields.io/github/watchers/yourusername/flask-container-vm?style=social)](https://github.com/yourusername/flask-container-vm/watchers)

@@ -2,7 +2,7 @@
 
 ## 🚀 Quick Upload to GitHub
 
-Follow these steps to upload your Cloud Architecture Exercise repository to GitHub:
+Follow these steps to upload your Flask Container vs VM Performance Analysis repository to GitHub:
 
 ### 1. Create a New Repository on GitHub
 
@@ -10,8 +10,8 @@ Follow these steps to upload your Cloud Architecture Exercise repository to GitH
 2. Click the "+" icon in the top right corner
 3. Select "New repository"
 4. Fill in the repository details:
-   - **Repository name**: `cloud-architecture-exercise`
-   - **Description**: `A comprehensive cloud architecture and DevOps engineering project demonstrating modern containerization, CI/CD pipelines, and performance benchmarking`
+   - **Repository name**: `flask-container-vm`
+   - **Description**: `A comprehensive Flask application performance analysis project demonstrating modern containerization, CI/CD pipelines, and performance benchmarking between virtual machines and containers`
    - **Visibility**: Public (recommended) or Private
    - **Initialize**: Do NOT check "Add a README file" (we already have one)
    - **Add .gitignore**: None (we already have one)
@@ -26,7 +26,7 @@ Run these commands in your terminal:
 cd /tmp/cloud_architecture_exercise
 
 # Add the remote repository (replace YOUR_USERNAME with your GitHub username)
-git remote add origin https://github.com/YOUR_USERNAME/cloud-architecture-exercise.git
+git remote add origin https://github.com/YOUR_USERNAME/flask-container-vm.git
 
 # Push your code to GitHub
 git push -u origin main
@@ -64,7 +64,7 @@ To host your documentation:
 Your uploaded repository will contain:
 
 ```
-cloud-architecture-exercise/
+flask-container-vm/
 ├── .github/
 │   └── workflows/
 │       └── ci-cd.yml          # GitHub Actions CI/CD pipeline
@@ -96,7 +96,7 @@ cloud-architecture-exercise/
 
 After uploading, update these files with your actual repository URL:
 
-1. **README.md**: Replace all instances of `yourusername/cloud-architecture-exercise`
+1. **README.md**: Replace all instances of `yourusername/flask-container-vm`
 2. **CONTRIBUTING.md**: Update repository URLs
 3. **GitHub Actions workflow**: Update image names if needed
 
@@ -105,7 +105,7 @@ After uploading, update these files with your actual repository URL:
 Update the badges in README.md with your actual repository:
 
 ```markdown
-[![CI/CD Pipeline](https://github.com/YOUR_USERNAME/cloud-architecture-exercise/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/YOUR_USERNAME/cloud-architecture-exercise/actions)
+[![CI/CD Pipeline](https://github.com/YOUR_USERNAME/flask-container-vm/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/YOUR_USERNAME/flask-container-vm/actions)
 ```
 
 ## 🚨 Troubleshooting
@@ -126,6 +126,6 @@ Update the badges in README.md with your actual repository:
 ## 🎉 Success!
 
 Once uploaded, your repository will be available at:
-`https://github.com/YOUR_USERNAME/cloud-architecture-exercise`
+`https://github.com/YOUR_USERNAME/flask-container-vm`
 
 Share it with others and start collaborating! 🚀
