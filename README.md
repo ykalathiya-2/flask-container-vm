@@ -1,6 +1,5 @@
 # Flask Container vs VM Performance Analysis
 
-[![CI/CD Pipeline](https://github.com/yourusername/flask-container-vm/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/yourusername/flask-container-vm/actions)
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 [![Python](https://img.shields.io/badge/python-3.9-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
