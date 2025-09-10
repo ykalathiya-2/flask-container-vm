@@ -28,7 +28,7 @@ This project helps you understand:
 
 1. **Download the project**
    ```bash
-   git clone https://github.com/yourusername/flask-container-vm.git
+   git clone https://github.com/ykalathiya-2/flask-container-vm.git
    cd flask-container-vm
    ```
 
